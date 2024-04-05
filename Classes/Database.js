@@ -1,5 +1,7 @@
+"use strict";
 const MySql = require("mysql");
 const Util = require("util");
+require("dotenv").config();
 
 module.exports = class Database {
   constructor() {
@@ -10,11 +12,13 @@ module.exports = class Database {
 
   initialize() {
     this.connection = MySql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "chien25062002",
-      database: "knightoflight",
+      host: process.env.HOST,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
+      port: process.env.PORT,
     });
+    console.log(process.env.HOST);
 
     // Kết nối và xử lý sự kiện lỗi
     this.connection.connect((err) => {
@@ -25,7 +29,6 @@ module.exports = class Database {
       }
     });
   }
-
   queryAsync(query, values) {
     return new Promise((resolve, reject) => {
       this.connection.query(query, values, function (err, res) {
