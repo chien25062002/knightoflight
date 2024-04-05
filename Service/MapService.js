@@ -1,10 +1,11 @@
 const Database = require("../Classes/Database");
 const MapMob = require("../Model/MapMob");
 const RuntimeObject = require("../Model/RuntimeObject");
+const Main = require("../Classes/Main");
 
 module.exports = class MapService {
-  constructor() {
-    this.db = new Database();
+  constructor(main = Main) {
+    this.db = main.database;
   }
 
   findMapById(mapId) {

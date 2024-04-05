@@ -9,12 +9,11 @@ const MapController = require("../Controller/MapController.js");
 module.exports = class Main {
   constructor(server = Server) {
     this.server = server;
-    this.mapCtrls = [];
     this.controller;
     this.database;
 
-    this.accountService = new AccountService(this);
-    this.characterService = new CharacterService(this);
+    this.accountService;
+    this.characterService;
 
     this.initialize();
   }
@@ -22,10 +21,8 @@ module.exports = class Main {
   initialize() {
     this.controller = new Controller(this);
     this.database = new Database();
-
-    // for (let i = 0; i < 1; i++) {
-    //   this.mapCtrls[i] = new MapController(this, i);
-    // }
+    this.accountService = new AccountService(this);
+    this.characterService = new CharacterService(this);
   }
 
   onUpdate() {

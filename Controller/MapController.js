@@ -4,7 +4,7 @@ const MapService = require("../Service/MapService");
 module.exports = class MapController {
   constructor(main = Main, id) {
     this.main = main;
-    this.mapservice = new MapService();
+    this.mapservice = new MapService(main);
 
     this.mapId = id;
     this.mapData;

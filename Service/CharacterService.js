@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = class CharacterService {
   constructor(main = Main) {
-    this.db = new Database();
+    this.db = main.database;
     this.main = main;
   }
 

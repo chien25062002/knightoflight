@@ -2,18 +2,10 @@ let Session = require("./Session.js");
 let Main = require("./Main.js");
 
 module.exports = class Server {
-  constructor(isLocal = false) {
-    this.isLocal = isLocal;
-
+  constructor() {
     this.sessions = [];
     this.sessionsInMap = [];
     this.main = new Main(this);
-
-    this.initialize();
-  }
-
-  initialize() {
-    this.main.initialize();
   }
 
   onUpdate() {

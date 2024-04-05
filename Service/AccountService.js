@@ -5,7 +5,7 @@ const Account = require("../Model/Account.js");
 module.exports = class AccountService {
   constructor(main = Main) {
     this.main = main;
-    this.db = new Database();
+    this.db = main.database;
   }
 
   findByUsernameAndPassword(username, password) {
