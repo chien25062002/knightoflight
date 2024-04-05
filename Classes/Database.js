@@ -19,6 +19,9 @@ module.exports = class Database {
       port: process.env.PORT,
     });
     console.log(process.env.HOST);
+    console.log(process.env.USER);
+    console.log(process.env.PASSWORD);
+    console.log(process.env.DATABASE);
 
     // Kết nối và xử lý sự kiện lỗi
     this.connection.connect((err) => {
