@@ -16,7 +16,7 @@ module.exports = class Character {
     this.defPoint = 1;
 
     this.dir = 1;
-    this.speed = 2;
+    this.speed = 4;
     this.quest = "";
   }
 };

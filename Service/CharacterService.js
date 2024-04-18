@@ -145,4 +145,63 @@ module.exports = class CharacterService {
         });
     });
   }
+
+  saveFields(data) {
+    var json = {
+      mapId: data.mapId,
+      power: data.power,
+      potential: data.potential,
+      nowHp: data.nowHp,
+      nowMp: data.nowMp,
+      hpPoint: data.hpPoint,
+      mpPoint: data.mpPoint,
+      atkPoint: data.atkPoint,
+      defPoint: data.defPoint,
+      dir: data.dir,
+      pX: data.pX,
+      pY: data.pY,
+      quest: JSON.stringify(data.dataQuest),
+      skill: JSON.stringify(data.skill),
+      currency: JSON.stringify(data.currency),
+    };
+
+    var query = "UPDATE characters SET ? WHERE id = ?";
+
+    this.db
+      .queryAsync(query, [json, data.id])
+      .then((result) => {
+        console.log("save field for " + data.id + " completed");
+      })
+      .catch((err) => {
+        console.log("failed to save field for " + data.id + "\n" + err);
+      });
+  }
+
+  saveQuest(data) {
+    // Chuyển đổi đối tượng dataDict thành chuỗi JSON
+    var jsonDataDict = JSON.stringify(data.dataDict);
+
+    // Tạo một đối tượng JSON chứa các trường cần lưu
+    var json = {
+      Id: data.Id,
+      dataDict: jsonDataDict,
+    };
+
+    var field = {
+      quest: JSON.stringify(json),
+    };
+
+    console.log(field);
+
+    var query = "UPDATE characters SET ? WHERE id = ?";
+
+    this.db
+      .queryAsync(query, [field, data.id])
+      .then((result) => {
+        console.log("save quest for " + data.id + " completed");
+      })
+      .catch((err) => {
+        console.log("failed to save quest for " + data.id + "\n" + err);
+      });
+  }
 };

@@ -15,7 +15,7 @@ module.exports = class Controller {
     let messageId = parseInt(data["message"]);
 
     let resData;
-    console.log("messageId " + messageId);
+    console.log("messageId " + messageId + "\n");
     switch (messageId) {
       case 10: // login
         var username = data["username"];
@@ -79,6 +79,13 @@ module.exports = class Controller {
           .catch((err) => {
             console.log(err);
           });
+        break;
+
+      case 33:
+        this.main.characterService.saveFields(data.data);
+        break;
+      case 34:
+        this.main.characterService.saveQuest(data);
         break;
 
       case 100: // yêu cầu load map

@@ -10,6 +10,7 @@
   "author": "Saiken",
   "license": "ISC",
   "dependencies": {
+    "@socket.io/component-emitter": "^3.1.1",
     "@types/node": "^20.11.17",
     "dotenv": "^16.4.5",
     "mysql": "^2.18.1",
