@@ -18,5 +18,9 @@ module.exports = class Character {
     this.dir = 1;
     this.speed = 4;
     this.quest = "";
+    this.inventory = "";
+    this.skill = "";
+    this.currency = "";
+    this.created_date;
   }
 };

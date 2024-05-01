@@ -82,15 +82,29 @@ module.exports = class Controller {
         break;
 
       case 33:
-        this.main.characterService.saveFields(data.data);
-        break;
-      case 34:
-        this.main.characterService.saveQuest(data);
+        this.main.characterService
+          .saveFields(data.data)
+          .then(() => {
+            resData = this.responeData(34);
+            this.sendResponeTo(session, resData);
+          })
+          .catch((err) => {
+            resData = this.responeData(34);
+            this.sendResponeTo(session, resData);
+          });
         break;
 
       case 100: // yêu cầu load map
         var mapId = data["mapId"];
         this.main.mapCtrls[mapId].onRequestReceived(session, data);
+        break;
+
+      case 201: // yêu cầu load leaderboard
+        this.main.characterService.loadLeader(50, data.id).then((result) => {
+          resData = this.responeData(202, result);
+
+          this.sendResponeTo(session, resData);
+        });
         break;
 
       case 1001: // RequestLoginCharacter

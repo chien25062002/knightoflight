@@ -153,7 +153,7 @@ class Decoder extends Emitter {
     }
 
     // In ra log và trả về đối tượng Packet
-    console.log("decoded", str, "as", p);
+    //console.log("decoded", str, "as", p);
     return p;
   }
 
