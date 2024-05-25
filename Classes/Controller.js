@@ -24,9 +24,13 @@ module.exports = class Controller {
         this.main.accountService
           .findByUsernameAndPassword(username, password)
           .then((account) => {
-            resData = this.responeData(11, account.toJSON());
-            this.sendResponeTo(session, resData);
-            console.log("user " + username + " login successfully.");
+            if (account == null || account === undefined) {
+              resData = this.responeData(13, null);
+            } else {
+              resData = this.responeData(11, account.toJSON());
+              this.sendResponeTo(session, resData);
+              console.log("user " + username + " login successfully.");
+            }
           })
           .catch((err) => {
             resData = this.responeData(13, null);
